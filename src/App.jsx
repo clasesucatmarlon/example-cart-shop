@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Blog from './components/blog/Blog';
@@ -6,14 +6,24 @@ import Home from './components/home/Home';
 import Shop from './components/shop/Shop';
 import Error404 from './components/404/Error404';
 import allProducts from './data/dataProducts';
+import Cart from './components/cart/Cart';
 
 const App = () => {
+	const valuesCart = [
+		{ id: 1, name: 'Product 1', quantity: 10 },
+		{ id: 3, name: 'Product 3', quantity: 5 },
+		{ id: 7, name: 'Product 7', quantity: 10 },
+	];
+
+	// eslint-disable-next-line no-unused-vars
+	const [listCart, setListCart] = useState(valuesCart);
+
 	return (
 		<Container>
 			<Menu>
 				<NavLink to='/'>Home</NavLink>
 				<NavLink to='/blog'>Blog</NavLink>
-				<NavLink to='/shop'>Tienda</NavLink>
+				<NavLink to='/shop'>Shop</NavLink>
 			</Menu>
 
 			<main>
@@ -26,7 +36,7 @@ const App = () => {
 			</main>
 
 			<aside>
-				<h3>Sidebar</h3>
+				<Cart listCart={listCart} />
 			</aside>
 		</Container>
 	);

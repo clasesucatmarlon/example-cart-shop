@@ -5,6 +5,7 @@ import Blog from './components/blog/Blog';
 import Home from './components/home/Home';
 import Shop from './components/shop/Shop';
 import Error404 from './components/404/Error404';
+import allProducts from './data/dataProducts';
 
 const App = () => {
 	return (
@@ -20,7 +21,7 @@ const App = () => {
 					<Route path='*' element={<Error404 />} />
 					<Route path='/' element={<Home />} />
 					<Route path='/blog' element={<Blog />} />
-					<Route path='/shop' element={<Shop />} />
+					<Route path='/shop' element={<Shop allProducts={allProducts} />} />
 				</Routes>
 			</main>
 

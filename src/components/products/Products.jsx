@@ -8,15 +8,13 @@ const Products = ({ allProducts }) => {
 			<ContainerProducts>
 				{allProducts.map((prod) => {
 					return (
-						<>
-							<Product key={prod.id}>
-								<p>{prod.name}</p>
-								<p>
-									Quantity: <span>{prod.quantity}</span>
-								</p>
-								<Button>Add to cart</Button>
-							</Product>
-						</>
+						<Product key={prod.id}>
+							<p>{prod.name}</p>
+							<p>
+								Quantity: <span>{prod.quantity}</span>
+							</p>
+							<Button>Add to cart</Button>
+						</Product>
 					);
 				})}
 			</ContainerProducts>

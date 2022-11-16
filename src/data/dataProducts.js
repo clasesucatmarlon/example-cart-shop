@@ -1,11 +1,14 @@
-const allProducts = [
-	{ id: 1, name: 'Product 1', quantity: 10 },
-	{ id: 2, name: 'Product 2', quantity: 15 },
-	{ id: 3, name: 'Product 3', quantity: 5 },
-	{ id: 4, name: 'Product 4', quantity: 7 },
-	{ id: 5, name: 'Product 5', quantity: 11 },
-	{ id: 6, name: 'Product 6', quantity: 10 },
-	{ id: 7, name: 'Product 7', quantity: 10 },
-];
+const stateInitial = {
+	products: [
+		{ id: 1, name: 'Computer DELL', stock: 10 },
+		{ id: 2, name: 'Printer HP', stock: 15 },
+		{ id: 3, name: 'Computer HP', stock: 5 },
+		{ id: 4, name: 'Display HP 24"', stock: 7 },
+		{ id: 5, name: 'Keyboard bluetooth', stock: 11 },
+		{ id: 6, name: 'Mouse bluetooth', stock: 10 },
+		{ id: 7, name: 'Laptop HP 13"', stock: 10 },
+	],
+	cart: [1, 2, 3],
+};
 
-export default allProducts;
+export default stateInitial;

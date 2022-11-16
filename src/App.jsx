@@ -5,8 +5,11 @@ import Blog from './components/blog/Blog';
 import Home from './components/home/Home';
 import Shop from './components/shop/Shop';
 import Error404 from './components/404/Error404';
-import allProducts from './data/dataProducts';
 import Cart from './components/cart/Cart';
+import { Provider } from 'react-redux'; // Redux
+import { createStore } from 'redux'; // Redux
+import reducer from './reducers/shopReducer';
+import allProducts from './data/allProducts';
 
 const App = () => {
 	const [listCart, setListCart] = useState([]);
@@ -44,30 +47,36 @@ const App = () => {
 		}
 	};
 
+	// reducer función que permite administrar nuestro estado global
+	const store = createStore(reducer);
+	console.log(store.getState()); // Mostrar los elementos del estado global
+
 	return (
-		<Container>
-			<Menu>
-				<NavLink to='/'>Home</NavLink>
-				<NavLink to='/blog'>Blog</NavLink>
-				<NavLink to='/shop'>Shop</NavLink>
-			</Menu>
+		<Provider store={store}>
+			<Container>
+				<Menu>
+					<NavLink to='/'>Home</NavLink>
+					<NavLink to='/blog'>Blog</NavLink>
+					<NavLink to='/shop'>Shop</NavLink>
+				</Menu>
 
-			<main>
-				<Routes>
-					<Route path='*' element={<Error404 />} />
-					<Route path='/' element={<Home />} />
-					<Route path='/blog' element={<Blog />} />
-					<Route
-						path='/shop'
-						element={<Shop allProducts={allProducts} addToCart={addToCart} />}
-					/>
-				</Routes>
-			</main>
+				<main>
+					<Routes>
+						<Route path='*' element={<Error404 />} />
+						<Route path='/' element={<Home />} />
+						<Route path='/blog' element={<Blog />} />
+						<Route
+							path='/shop'
+							element={<Shop allProducts={allProducts} addToCart={addToCart} />}
+						/>
+					</Routes>
+				</main>
 
-			<aside>
-				<Cart listCart={listCart} />
-			</aside>
-		</Container>
+				<aside>
+					<Cart listCart={listCart} />
+				</aside>
+			</Container>
+		</Provider>
 	);
 };
 

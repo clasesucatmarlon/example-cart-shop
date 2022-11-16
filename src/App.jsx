@@ -9,14 +9,40 @@ import allProducts from './data/dataProducts';
 import Cart from './components/cart/Cart';
 
 const App = () => {
-	const valuesCart = [
-		{ id: 1, name: 'Product 1', quantity: 10 },
-		{ id: 3, name: 'Product 3', quantity: 5 },
-		{ id: 7, name: 'Product 7', quantity: 10 },
-	];
+	const [listCart, setListCart] = useState([]);
 
-	// eslint-disable-next-line no-unused-vars
-	const [listCart, setListCart] = useState(valuesCart);
+	/**
+	 * Function to add items to cart
+	 * @param {idProd} idProd product id to be added
+	 * @param {nameProd} nameProd product name to be added
+	 */
+	const addToCart = (idProd, nameProd) => {
+		if (listCart.length === 0) {
+			setListCart([{ id: idProd, name: nameProd, quantity: 1 }]);
+		} else {
+			// Clonar listCart
+			const newListCart = [...listCart];
+			// Comprobar si el cart ya tiene el id
+			const foundProdInCart =
+				newListCart.filter((item) => item.id === idProd).length > 0;
+			if (foundProdInCart) {
+				// Si ya está el id se actualiza el cart en base a la posición
+				newListCart.forEach((prodCart, index) => {
+					if (prodCart.id === idProd) {
+						const quantityProd = newListCart[index].quantity;
+						newListCart[index] = {
+							id: idProd,
+							name: nameProd,
+							quantity: quantityProd + 1,
+						};
+					}
+				});
+			} else {
+				newListCart.push({ id: idProd, name: nameProd, quantity: 1 });
+			}
+			setListCart(newListCart);
+		}
+	};
 
 	return (
 		<Container>
@@ -31,7 +57,10 @@ const App = () => {
 					<Route path='*' element={<Error404 />} />
 					<Route path='/' element={<Home />} />
 					<Route path='/blog' element={<Blog />} />
-					<Route path='/shop' element={<Shop allProducts={allProducts} />} />
+					<Route
+						path='/shop'
+						element={<Shop allProducts={allProducts} addToCart={addToCart} />}
+					/>
 				</Routes>
 			</main>
 

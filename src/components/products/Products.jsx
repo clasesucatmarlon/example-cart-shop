@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
 
-const Products = ({ allProducts }) => {
+const Products = ({ allProducts, addToCart }) => {
 	return (
 		<div>
 			<ContainerProducts>
@@ -13,7 +13,9 @@ const Products = ({ allProducts }) => {
 							<p>
 								Quantity: <span>{prod.quantity}</span>
 							</p>
-							<Button>Add to cart</Button>
+							<Button onClick={() => addToCart(prod.id, prod.name)}>
+								Add to cart
+							</Button>
 						</Product>
 					);
 				})}
@@ -24,6 +26,7 @@ const Products = ({ allProducts }) => {
 
 Products.propTypes = {
 	allProducts: PropTypes.array.isRequired,
+	addToCart: PropTypes.func.isRequired,
 };
 
 const ContainerProducts = styled.div`

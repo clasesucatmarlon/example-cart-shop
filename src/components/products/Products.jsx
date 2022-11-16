@@ -11,7 +11,7 @@ const Products = ({ allProducts, addToCart }) => {
 						<Product key={prod.id}>
 							<p>{prod.name}</p>
 							<p>
-								Quantity: <span>{prod.quantity}</span>
+								Stock: <span>{prod.stock}</span>
 							</p>
 							<Button onClick={() => addToCart(prod.id, prod.name)}>
 								Add to cart

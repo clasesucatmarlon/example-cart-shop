@@ -9,7 +9,6 @@ import Cart from './components/cart/Cart';
 import { Provider } from 'react-redux'; // Redux
 import { createStore } from 'redux'; // Redux
 import reducer from './reducers/shopReducer';
-import allProducts from './data/allProducts';
 
 const App = () => {
 	const [listCart, setListCart] = useState([]);
@@ -65,10 +64,7 @@ const App = () => {
 						<Route path='*' element={<Error404 />} />
 						<Route path='/' element={<Home />} />
 						<Route path='/blog' element={<Blog />} />
-						<Route
-							path='/shop'
-							element={<Shop allProducts={allProducts} addToCart={addToCart} />}
-						/>
+						<Route path='/shop' element={<Shop addToCart={addToCart} />} />
 					</Routes>
 				</main>
 

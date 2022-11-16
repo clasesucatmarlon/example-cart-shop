@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const Products = ({ allProducts, addToCart }) => {
 	return (
@@ -73,4 +74,15 @@ const Button = styled.button`
 	}
 `;
 
-export default Products;
+/**
+ * This function takes the state of the Redux store as an argument and returns an object that maps the
+ * state to the props of the component.
+ * @returns The state of the store.
+ */
+const mapStateToProps = (state) => {
+	return {
+		allProducts: state.products,
+	};
+};
+
+export default connect(mapStateToProps)(Products);

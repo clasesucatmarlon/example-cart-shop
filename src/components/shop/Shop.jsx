@@ -1,18 +1,13 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import Products from '../products/Products';
 
-const Shop = ({ addToCart }) => {
+const Shop = () => {
 	return (
 		<div>
 			<h1>Store</h1>
-			<Products addToCart={addToCart} />
+			<Products />
 		</div>
 	);
-};
-
-Shop.propTypes = {
-	addToCart: PropTypes.func.isRequired,
 };
 
 export default Shop;

@@ -8,10 +8,7 @@ const stateInitial = {
 		{ id: 6, name: 'Mouse bluetooth', stock: 10 },
 		{ id: 7, name: 'Laptop HP 17"', stock: 10 },
 	],
-	cart: [
-		{ id: 1, name: 'Computer DELL', quantity: 10 },
-		{ id: 5, name: 'Keyboard bluetooth', quantity: 1 },
-	],
+	cart: [],
 };
 
 export default stateInitial;

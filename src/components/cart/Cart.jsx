@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 const Cart = ({ listCart }) => {
 	return (
@@ -46,4 +47,15 @@ const Quantity = styled.p`
 	}
 `;
 
-export default Cart;
+/**
+ * This function takes the state of the Redux store as an argument and returns an object that maps the
+ * state to the props of the component.
+ * @returns The state of the store.
+ */
+const mapStateToProps = (state) => {
+	return {
+		listCart: state.cart,
+	};
+};
+
+export default connect(mapStateToProps)(Cart);

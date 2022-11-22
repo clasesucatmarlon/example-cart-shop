@@ -48,7 +48,7 @@ const App = () => {
 
 	// reducer función que permite administrar nuestro estado global
 	const store = createStore(reducer);
-	console.log(store.getState()); // Mostrar los elementos del estado global
+	// console.log(store.getState()); // Mostrar los elementos del estado global
 
 	return (
 		<Provider store={store}>
@@ -69,7 +69,7 @@ const App = () => {
 				</main>
 
 				<aside>
-					<Cart listCart={listCart} />
+					<Cart />
 				</aside>
 			</Container>
 		</Provider>

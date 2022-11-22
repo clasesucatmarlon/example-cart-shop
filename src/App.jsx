@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Blog from './components/blog/Blog';
@@ -11,40 +11,38 @@ import { createStore } from 'redux'; // Redux
 import reducer from './reducers/shopReducer';
 
 const App = () => {
-	const [listCart, setListCart] = useState([]);
-
 	/**
 	 * Function to add items to cart
 	 * @param {idProd} idProd product id to be added
 	 * @param {nameProd} nameProd product name to be added
 	 */
-	const addToCart = (idProd, nameProd) => {
-		if (listCart.length === 0) {
-			setListCart([{ id: idProd, name: nameProd, quantity: 1 }]);
-		} else {
-			// Clonar listCart
-			const newListCart = [...listCart];
-			// Comprobar si el cart ya tiene el id
-			const foundProdInCart =
-				newListCart.filter((item) => item.id === idProd).length > 0;
-			if (foundProdInCart) {
-				// Si ya está el id se actualiza el cart en base a la posición
-				newListCart.forEach((prodCart, index) => {
-					if (prodCart.id === idProd) {
-						const quantityProd = newListCart[index].quantity;
-						newListCart[index] = {
-							id: idProd,
-							name: nameProd,
-							quantity: quantityProd + 1,
-						};
-					}
-				});
-			} else {
-				newListCart.push({ id: idProd, name: nameProd, quantity: 1 });
-			}
-			setListCart(newListCart);
-		}
-	};
+	// const addToCart = (idProd, nameProd) => {
+	// 	if (listCart.length === 0) {
+	// 		setListCart([{ id: idProd, name: nameProd, quantity: 1 }]);
+	// 	} else {
+	// 		// Clonar listCart
+	// 		const newListCart = [...listCart];
+	// 		// Comprobar si el cart ya tiene el id
+	// 		const foundProdInCart =
+	// 			newListCart.filter((item) => item.id === idProd).length > 0;
+	// 		if (foundProdInCart) {
+	// 			// Si ya está el id se actualiza el cart en base a la posición
+	// 			newListCart.forEach((prodCart, index) => {
+	// 				if (prodCart.id === idProd) {
+	// 					const quantityProd = newListCart[index].quantity;
+	// 					newListCart[index] = {
+	// 						id: idProd,
+	// 						name: nameProd,
+	// 						quantity: quantityProd + 1,
+	// 					};
+	// 				}
+	// 			});
+	// 		} else {
+	// 			newListCart.push({ id: idProd, name: nameProd, quantity: 1 });
+	// 		}
+	// 		setListCart(newListCart);
+	// 	}
+	// };
 
 	// reducer función que permite administrar nuestro estado global
 	const store = createStore(reducer);
@@ -64,7 +62,7 @@ const App = () => {
 						<Route path='*' element={<Error404 />} />
 						<Route path='/' element={<Home />} />
 						<Route path='/blog' element={<Blog />} />
-						<Route path='/shop' element={<Shop addToCart={addToCart} />} />
+						<Route path='/shop' element={<Shop />} />
 					</Routes>
 				</main>
 
